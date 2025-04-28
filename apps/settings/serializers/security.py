@@ -195,6 +195,27 @@ class SecuritySessionSerializer(serializers.Serializer):
     SECURITY_WATERMARK_ENABLED = serializers.BooleanField(
         required=True, label=_('Watermark'),
     )
+    SECURITY_WATERMARK_SESSION_CONTENT = serializers.CharField(
+        required=False, label=_('会话水印自定义内容'), default='${username}(${name})'
+    )
+    SECURITY_WATERMARK_CONSOLE_CONTENT = serializers.CharField(
+        required=False, label=_("管理页面水印自定义内容")
+    )
+    SECURITY_WATERMARK_COLOR = serializers.CharField(
+        max_length=32, default="", label=_("Color")
+    )
+    SECURITY_WATERMARK_FONT_SIZE = serializers.IntegerField(
+        required=False, label=_('WatermarkFontSize'), min_value=1, max_value=100,
+    )
+    SECURITY_WATERMARK_HEIGHT = serializers.IntegerField(
+        required=False, label=_('WatermarkHeight'), default=200
+    )
+    SECURITY_WATERMARK_WIDTH = serializers.IntegerField(
+        required=False, label=_('WatermarkWidth'), default=200
+    )
+    SECURITY_WATERMARK_ROTATE = serializers.IntegerField(
+        required=False, label=_('WatermarkRotate'), default=45
+    )
     SECURITY_MAX_IDLE_TIME = serializers.IntegerField(
         min_value=1, max_value=99999, required=False,
         label=_('Max idle time (minute)'),
