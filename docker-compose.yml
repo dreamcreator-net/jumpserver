@@ -10,11 +10,14 @@ services:
       - SECRET_KEY=${SECRET_KEY}
       - BOOTSTRAP_TOKEN=${BOOTSTRAP_TOKEN}
       - DB_HOST=mysql
+      - DB_PORT=3306
       - DB_USER=jumpserver
       - DB_PASSWORD=jumpserver
       - DB_NAME=jumpserver
       - REDIS_HOST=redis
+      - REDIS_PORT=6379
       - REDIS_PASSWORD=jumpserver
+      - REDIS_DB=0
     volumes:
       - ./data:/opt/jumpserver/data
       - ./logs:/opt/jumpserver/logs
@@ -23,6 +26,9 @@ services:
       - "2222:2222"
     networks:
       - jumpserver
+    depends_on:
+      - mysql
+      - redis
 
   mysql:
     image: mysql:8.0
